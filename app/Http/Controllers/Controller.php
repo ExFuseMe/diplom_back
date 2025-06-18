@@ -14,6 +14,15 @@ namespace App\Http\Controllers;
  * @OA\PathItem(
  *     path="/api/documentation",
  * ),
+ * @OA\Components(
+ *      @OA\SecurityScheme(
+ *          securityScheme="bearerAuth",
+ *          type="http",
+ *          scheme="bearer"
+ *      )
+ *  )
+ *  )
+ *
  */
 
 abstract class Controller
