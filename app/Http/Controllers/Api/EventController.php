@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreEventRequest;
+use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
-use Illuminate\Http\Request;
 use App\Http\Resources\EventResource;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -44,16 +45,13 @@ class EventController extends Controller
      *     @OA\Response(response="403", description="Нет прав")
      * )
      */
-    public function store(Request $request)
+    public function store(StoreEventRequest $request)
     {
         $this->authorize('create', Event::class);
-        $data = $request->validate([
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'address' => 'required|string',
-            'date_time' => 'required|date',
-        ]);
+
+        $data = $request->validated();
         $event = Event::create($data);
+
         return new EventResource($event);
     }
 
@@ -91,15 +89,10 @@ class EventController extends Controller
      *     @OA\Response(response="403", description="Нет прав")
      * )
      */
-    public function update(Request $request, Event $event)
+    public function update(UpdateEventRequest $request, Event $event)
     {
         $this->authorize('update', $event);
-        $data = $request->validate([
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'address' => 'required|string',
-            'date_time' => 'required|date',
-        ]);
+        $data = $request->validated();
         $event->update($data);
         return new EventResource($event);
     }
