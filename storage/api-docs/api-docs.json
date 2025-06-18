@@ -1,0 +1,14 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "L5 OpenApi",
+        "description": "Swagger код дипломной работы",
+        "contact": {
+            "email": "DRNikitin@stud.kpfu.ru"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/documentation": {}
+    }
+}
