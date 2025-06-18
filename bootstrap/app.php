@@ -29,9 +29,9 @@ return Application::configure(basePath: dirname(__DIR__))
 
                 AccessDeniedHttpException::class => response()->json(['error' => __("Forbidden")], 403),
 
-                ValidationException::class => response()->json(['errors' => $e->errors()], 403),
+                ValidationException::class => response()->json(['errors' => $e->getMessage()], 403),
 
-                default => response()->json(['error' => $e->errors()], 400),
+                default => response()->json(['error' => $e->getMessage()], 400),
             };
 
             return $response;

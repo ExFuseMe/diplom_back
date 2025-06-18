@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Api\Services\EventService;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EventFilterRequest;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
@@ -13,18 +15,49 @@ class EventController extends Controller
 {
     use AuthorizesRequests;
 
+    private EventService $service;
+
+    public function __construct()
+    {
+        $this->service = new EventService();
+    }
+
     /**
      * @OA\Get(
      *     path="/api/events",
      *     summary="Получить список мероприятий",
      *     tags={"Мероприятия"},
      *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter (
+     *          name="id",
+     *          in="query",
+     *          required=false,
+     *      ),
+     *      @OA\Parameter (
+     *           name="name",
+     *           in="query",
+     *           required=false,
+     *       ),
+     *      @OA\Parameter (
+     *           name="description",
+     *           in="query",
+     *           required=false,
+     *       ),
+     *      @OA\Parameter (
+     *           name="address",
+     *           in="query",
+     *           required=false,
+     *       ),
      *     @OA\Response(response="200", description="Успешно", @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/EventResponseSchema"))),
      * )
      */
-    public function index()
+    public function index(EventFilterRequest $request)
     {
-        $events = Event::all();
+        $perPage = request()->query('perPage', 10);
+        $filters = $request->validated();
+
+        $events = $this->service->getEventList($perPage, $filters);
+
         return EventResource::collection($events);
     }
 

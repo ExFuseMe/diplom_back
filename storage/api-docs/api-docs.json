@@ -56,6 +56,28 @@
                 ],
                 "summary": "Получить список мероприятий",
                 "operationId": "e529c81e6aaec82f49950a87ed881f57",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "address",
+                        "in": "query",
+                        "required": false
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Успешно",
