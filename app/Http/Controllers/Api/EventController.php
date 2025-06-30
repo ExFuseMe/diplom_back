@@ -82,8 +82,7 @@ class EventController extends Controller
     {
         $this->authorize('create', Event::class);
 
-        $data = $request->validated();
-        $event = Event::create($data);
+        $event = $this->service->createEvent($request);
 
         return new EventResource($event);
     }
@@ -125,8 +124,9 @@ class EventController extends Controller
     public function update(UpdateEventRequest $request, Event $event)
     {
         $this->authorize('update', $event);
-        $data = $request->validated();
-        $event->update($data);
+
+        $this->service->updateEvent($request, $event);
+
         return new EventResource($event);
     }
 
@@ -144,7 +144,9 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         $this->authorize('delete', $event);
-        $event->delete();
+
+        $this->service->deleteEvent($event);
+
         return response()->json(null, 204);
     }
 }
