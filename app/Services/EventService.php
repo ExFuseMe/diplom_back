@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Services;
+namespace App\Services;
 
 use App\Repositories\EventRepository;
 

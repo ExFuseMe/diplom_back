@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\Services\EventService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventFilterRequest;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
-use App\Models\Event;
 use App\Http\Resources\EventResource;
+use App\Models\Event;
+use App\Services\EventService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class EventController extends Controller

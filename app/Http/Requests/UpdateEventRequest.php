@@ -13,6 +13,8 @@ class UpdateEventRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'address' => ['nullable', 'string', 'max:255'],
             'date_time' => ['nullable', 'date', 'after_or_equal:today'],
+            'files' => ['nullable', 'array'],
+            'files.*' => ['file', 'mimes:jpeg,jpg,png,mp4,webm,mov', 'max:2048'],
         ];
     }
 }
