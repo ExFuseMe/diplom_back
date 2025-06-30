@@ -9,6 +9,345 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/documentation": {}
-    }
+        "/api/documentation": {},
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Авторизация"
+                ],
+                "summary": "Авторизация",
+                "operationId": "222b2625838e3c57e017987f73598fda",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AuthRequestSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials"
+                    }
+                }
+            }
+        },
+        "/api/events": {
+            "get": {
+                "tags": [
+                    "Мероприятия"
+                ],
+                "summary": "Получить список мероприятий",
+                "operationId": "e529c81e6aaec82f49950a87ed881f57",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "address",
+                        "in": "query",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешно",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/EventResponseSchema"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Мероприятия"
+                ],
+                "summary": "Создать мероприятие (только для админа)",
+                "operationId": "e958e1c6c275d5f9b7ebcd837903d0ef",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EventRequestSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Создано",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EventResponseSchema"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Нет прав"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/events/{id}": {
+            "get": {
+                "tags": [
+                    "Мероприятия"
+                ],
+                "summary": "Просмотр мероприятия",
+                "operationId": "c0f602d773798994c228d99dbd63b842",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешно",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EventResponseSchema"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Не найдено"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Мероприятия"
+                ],
+                "summary": "Обновить мероприятие (только для админа)",
+                "operationId": "8b1dd7f57d8fbd2e85af2762950e0b1d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EventRequestSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Обновлено",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EventResponseSchema"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Нет прав"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Мероприятия"
+                ],
+                "summary": "Удалить мероприятие (только для админа)",
+                "operationId": "deca25daa2d423da0ff6b6677d92545b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Удалено"
+                    },
+                    "403": {
+                        "description": "Нет прав"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AuthRequestSchema": {
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "example": "admin@admin.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "admin"
+                    }
+                },
+                "type": "object"
+            },
+            "EventRequestSchema": {
+                "required": [
+                    "name",
+                    "description",
+                    "address",
+                    "date_time"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Название мероприятия"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Описание мероприятия"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "г. Казань, ул. Пушкина, 1"
+                    },
+                    "date_time": {
+                        "type": "string",
+                        "example": "2024-07-01T18:00:00+03:00"
+                    }
+                },
+                "type": "object"
+            },
+            "EventResponseSchema": {
+                "required": [
+                    "id",
+                    "name",
+                    "description",
+                    "address",
+                    "date_time"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Название мероприятия"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Описание мероприятия"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "г. Казань, ул. Пушкина, 1"
+                    },
+                    "date_time": {
+                        "type": "string",
+                        "example": "2024-07-01T18:00:00+03:00"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Авторизация",
+            "description": "Авторизация"
+        },
+        {
+            "name": "Мероприятия",
+            "description": "Мероприятия"
+        }
+    ]
 }
