@@ -3,8 +3,6 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -33,7 +31,6 @@ return Application::configure(basePath: dirname(__DIR__))
 
                 default => response()->json(['error' => $e->getMessage()], 400),
             };
-
             return $response;
         });
         })->create();
