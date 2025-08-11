@@ -1,22 +1,15 @@
 <?php
 
+use App\Http\Controllers\Web\AuthController;
+use App\Http\Controllers\Web\EventController;
 use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
+
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-Route::middleware(['auth'])->group(function () {
-    Route::redirect('settings', 'settings/profile');
-
-    Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
-    Volt::route('settings/password', 'settings.password')->name('settings.password');
-    Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('events',EventController::class);
 });
-
-require __DIR__.'/auth.php';
