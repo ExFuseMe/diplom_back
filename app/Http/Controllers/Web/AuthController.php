@@ -21,4 +21,9 @@ class AuthController extends Controller
         }
         return redirect()->back()->withErrors(['error' => $data->getMessage()]);
     }
+
+    public function login_view()
+    {
+        return view('welcome');
+    }
 }

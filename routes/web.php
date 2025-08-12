@@ -6,10 +6,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login.view');
 })->name('home');
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/login', [AuthController::class, 'login_view'])->name('login.view');
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('events',EventController::class);
 });
