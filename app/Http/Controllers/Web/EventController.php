@@ -6,13 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
+use App\Services\EventService;
 
 class EventController extends Controller
 {
-    public function index()
+    public function index(EventService $eventService)
     {
         //TODO: проверки
-        return view('pages.homepage');
+
+        [$events, $labels, $graphData, $monthEvents] = $eventService->listEvents();
+
+
+        return view(
+            'pages.events.index',
+            ['events' => $events, 'graphData' => $graphData, 'labels' => $labels, 'monthEvents' => $monthEvents]
+        );
     }
 
     /**
@@ -20,15 +28,20 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        //TODO: проверка роли
+        return view('pages.events.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEventRequest $request)
+    public function store(StoreEventRequest $request, EventService $eventService)
     {
-        //
+        //TODO: проверка роли
+        $validated = $request->validated();
+        $event = $eventService->createEvent($validated);
+
+        return redirect()->route('events.show', ['event' => $event]);
     }
 
     /**
@@ -36,7 +49,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        dd($event);
     }
 
     /**

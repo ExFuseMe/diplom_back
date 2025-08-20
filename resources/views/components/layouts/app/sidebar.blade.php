@@ -2,6 +2,9 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 <head>
     @include('partials.head')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/js/notyf.js'])
+    @vite(['resources/js/chart.js'])
 </head>
 
 <body class="flex min-h-screen">

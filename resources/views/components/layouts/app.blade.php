@@ -13,6 +13,7 @@
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @vite(['resources/js/notyf.js'])
+    @vite(['resources/js/chart.js'])
 </head>
 
 @if(session()->has('success'))
