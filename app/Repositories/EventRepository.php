@@ -3,7 +3,7 @@
 namespace App\Repositories;
 use App\Models\Event as Model;
 
-class EventRepository extends BasicRepository
+class EventRepository extends CoreRepository
 {
     public function getModelClass(): string
     {

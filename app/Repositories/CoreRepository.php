@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-abstract class BasicRepository
+abstract class CoreRepository
 {
     private mixed $model;
 
