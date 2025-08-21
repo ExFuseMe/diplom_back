@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use App\Http\Requests\StoreAnswerRequest;
-use App\Http\Requests\UpdateAnswerRequest;
-use App\Models\Answer;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreEventFormRequest;
+use App\Http\Requests\UpdateEventFormRequest;
+use App\Models\EventForm;
 
-class AnswerController extends Controller
+class EventFormController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class AnswerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAnswerRequest $request)
+    public function store(StoreEventFormRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class AnswerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Answer $answer)
+    public function show(EventForm $eventForm)
     {
         //
     }
@@ -43,7 +44,7 @@ class AnswerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Answer $answer)
+    public function edit(EventForm $eventForm)
     {
         //
     }
@@ -51,7 +52,7 @@ class AnswerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAnswerRequest $request, Answer $answer)
+    public function update(UpdateEventFormRequest $request, EventForm $eventForm)
     {
         //
     }
@@ -59,7 +60,7 @@ class AnswerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Answer $answer)
+    public function destroy(EventForm $eventForm)
     {
         //
     }
