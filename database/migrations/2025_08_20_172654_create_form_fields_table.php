@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('type');
-            $table->boolean('required')->default(false);
+            $table->boolean('is_required')->default(false);
 
             $table->foreignId('event_forms_id')
                 ->constrained('event_forms')
