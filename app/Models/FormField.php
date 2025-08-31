@@ -11,11 +11,11 @@ class FormField extends Model
         'name',
         'type',
         'is_required',
-        'event_forms_id'
+        'event_form_id'
     ];
 
     public function eventForm(): BelongsTo
     {
-        return $this->belongsTo(EventForm::class, 'event_forms_id');
+        return $this->belongsTo(EventForm::class, 'event_form_id');
     }
 }

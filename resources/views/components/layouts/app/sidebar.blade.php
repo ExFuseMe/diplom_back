@@ -84,7 +84,7 @@
             </a>
         </div>
     </div>
-    <div class="text-center py-4 flex justify-between mx-5 bg-kpfu-gray rounded-xl p-2 mb-[1rem]">
+    <div class="text-center py-4 flex justify-between mx-5 bg-kpfu-gray/50 rounded-xl p-2 mb-[1rem]">
         <div class="font-bold">
             {{auth()->user()->name}}
         </div>

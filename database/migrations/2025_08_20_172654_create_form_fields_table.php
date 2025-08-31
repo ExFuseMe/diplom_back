@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('type');
             $table->boolean('is_required')->default(false);
 
-            $table->foreignId('event_forms_id')
+            $table->foreignId('event_form_id')
                 ->constrained('event_forms')
                 ->cascadeOnDelete();
             $table->timestamps();

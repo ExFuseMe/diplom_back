@@ -20,6 +20,6 @@ class Event extends Model
 
     public function forms(): HasMany
     {
-        return $this->hasMany(EventForm::class, 'events_id');
+        return $this->hasMany(EventForm::class, 'event_id');
     }
 }

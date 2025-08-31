@@ -11,7 +11,7 @@ enum FieldTypesEnum
     const RADIO = 'radio';
     const FILE = 'file';
 
-    public function getAll(): array
+    public static function getAll(): array
     {
         return [
             self::TEXT,

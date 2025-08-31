@@ -11,7 +11,7 @@ abstract class CoreRepository
         $this->model = app($this->getModelClass());
     }
 
-     abstract public function getModelClass();
+    abstract public function getModelClass(): string;
 
     public function startConditions()
     {

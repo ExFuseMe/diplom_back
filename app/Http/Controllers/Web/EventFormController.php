@@ -6,20 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEventFormRequest;
 use App\Http\Requests\UpdateEventFormRequest;
 use App\Models\EventForm;
+use App\Services\EventFormService;
 
 class EventFormController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
@@ -28,9 +18,11 @@ class EventFormController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEventFormRequest $request)
+    public function store(StoreEventFormRequest $request, EventFormService $eventFormService)
     {
-        //
+        $validated = $request->validated();
+        $form = $eventFormService->createEventFormWithFields($validated);
+        dd($form);
     }
 
     /**
